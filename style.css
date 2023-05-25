@@ -134,6 +134,9 @@ a {
     #left > .icon {
         display: block;
     }
+    .section-list {
+        width: 54px;
+    }
     .section-list > a > span {
         display: none;
     }
