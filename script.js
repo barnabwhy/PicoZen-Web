@@ -130,7 +130,6 @@ function downloadFile(url, fileName){
     aElement.href = url;
     aElement.setAttribute('download', true);
     aElement.click();
-    URL.revokeObjectURL(href);
 };
 
 document.querySelector("#settings-btn").addEventListener('click', () => {
