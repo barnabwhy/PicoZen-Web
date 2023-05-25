@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>PicoZen Web (Beta)</title>
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+        <link rel="stylesheet" href="/style.css">
+    </head>
+    <body>
+        <div id="left">
+            <span class="title">PicoZen</span>
+            <img class="icon" src="/assets/icon.svg" draggable="false" />
+
+            <div class="section-list">
+                <a id="sideload-link" class="active" href="/">
+                    <svg viewbox="0 0 24 24"><use href="/assets/sections/sideload.svg#img" style="--color-fill: var(--color-text);"></use></svg>
+                    <span>Sideload</span>
+                </a>
+            </div>
+            <a id="settings-btn" class="settings">
+                <svg viewbox="0 0 60 60"><use href="/assets/settings.svg#img" style="--color-fill: var(--color-text);"></use></svg>
+            </a>
+        </div>
+        <div id="right">
+            <h1>Sideload</h1>
+            <div id="sideload-list"></div>
+            <div id="sideload-error">
+                <span>No files found</span>
+            </div>
+        </div>
+
+        <div id="settings-overlay">
+            <div id="settings-overlay-backdrop"></div>
+            <div id="settings">
+                <h1>Settings</h1>
+                <div class="close">
+                    <svg viewbox="0 0 24 24"><use href="/assets/close.svg#img" style="--color-fill: var(--color-text);"></use></svg>
+                </div>
+
+                <span class="header">Sideload</span>
+                <div class="settings-item" id="sideload-type">
+                    <b>Server type:</b>
+                    <div class="dark">Proxied FTP</div>
+                </div>
+                <div class="settings-item" id="sideload-server">
+                    <input type="text" placeholder="Sideload server" id="sideload-server-input" />
+                    <a id="sideload-server-change">Change</a>
+                </div>
+            </div>
+        </div>
+
+        <script src="/script.js"></script>
+    </body>
+</html>

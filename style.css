@@ -1,0 +1,306 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
+    --color-text: #d6d6d6;
+    --color-text-disabled: #d6d6d630;
+    --color-link: #428af8;
+    --color-alert: #ff5852;
+    --bg-darker: #111111;
+    --bg-dark: #1e1e1e;
+    --bg-med: #292929;
+    --bg-light: #313131;
+    --bg-lighter: #393939;
+
+    --left-area-width: 240px;
+}
+
+* {
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    background-color: var(--bg-med);
+    color: var(--color-text);
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+
+    display: grid;
+    grid-template-columns: var(--left-area-width) 1fr;
+}
+
+a {
+    color: var(--color-link);
+}
+
+#left {
+    background-color: var(--bg-dark);
+    height: 100%;
+    width: 100%;
+    padding: 15px;
+    display: grid;
+    grid-template-rows: min-content 1fr min-content;
+}
+
+#left .title {
+    font-size: 35px;
+    font-weight: bold;
+    vertical-align: middle;
+    margin: 15px;
+    display: inline-block;
+}
+#left .icon {
+    width: 24px;
+    margin: 15px 15px 20px 15px;
+    display: none;
+}
+
+.section-list {
+    display: grid;
+    grid-auto-rows: min-content;
+    gap: 5px;
+}
+
+.section-list > a {
+    width: 100%;
+    height: auto;
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: var(--color-text);
+    text-decoration: none;
+}
+.section-list > a:hover {
+    background-color: var(--bg-med);
+}
+.section-list > a.active {
+    background-color: var(--bg-light);
+}
+.section-list > a.active:hover {
+    background-color: var(--bg-lighter);
+}
+
+
+.section-list > a > svg {
+    height: 24px;
+    vertical-align: middle;
+}
+
+.section-list > a > span {
+    margin-left: 10px;
+    font-size: 16px;
+    vertical-align: middle;
+}
+
+#left > .settings {
+    display: block;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--bg-med);
+    cursor: pointer;
+}
+#left > .settings:hover {
+    background-color: var(--bg-light);
+}
+#left > .settings > svg {
+    width: 100%;
+}
+
+#right {
+    height: 100vh;
+    width: 100%;
+    padding: 0px 0px 0px 30px;
+    display: grid;
+    grid-template-rows: auto 1fr;
+}
+
+#right > h1 {
+    font-size: 35px;
+    margin: 0;
+    padding: 30px 0px 15px 0px;
+}
+
+
+
+@media screen and (max-width: 720px) {
+    :root {
+        --left-area-width: 84px;
+    }
+    #left > .title {
+        display: none;
+    }
+    #left > .icon {
+        display: block;
+    }
+    .section-list > a > span {
+        display: none;
+    }
+}
+
+
+#right #sideload-list {
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    padding: 0px 30px 30px 0px;
+}
+#right #sideload-error {
+    display: none;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 30px;
+    text-align: center;
+}
+
+#right .sideload-item {
+    width: 100%;
+    background-color: var(--bg-light);
+    margin-top: 5px;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    line-height: 24px;
+    cursor: pointer;
+    align-items: center;
+}
+#right .sideload-item > * {
+    vertical-align: middle;
+    margin: 15px;
+}
+#right .sideload-item::before {
+    content: '';
+    background: url(/assets/download.svg);
+    height: 24px;
+    width: 24px;
+    margin: 15px;
+    vertical-align: middle;
+    display: inline-block;
+}
+#right .sideload-item.dir::before {
+    background: url(/assets/folder.svg);
+}
+#right .sideload-item > .name {
+    font-weight: bold;
+    word-break: break-all;
+}
+
+#right .sideload-item.dir > .size {
+    grid-template-columns: auto 1fr auto;
+    display: none;
+}
+
+#settings-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+#settings-overlay-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.5);
+}
+#settings {
+    height: auto;
+    max-height: calc(100% - 80px);
+    width: calc(100vw - 80px);
+    max-width: 480px;
+    background-color: var(--bg-med);
+    border-radius: 30px;
+    padding: 0px 20px 15px 20px;
+    justify-self: center;
+    position: relative;
+    overflow: auto;
+}
+#settings > h1 {
+    padding: 30px 15px 15px 15px;
+    font-size: 25px;
+}
+#settings > .close {
+    display: block;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--bg-med);
+    cursor: pointer;
+    position: absolute;
+    top: 35px;
+    right: 35px;
+}
+#settings > .close:hover {
+    background-color: var(--bg-light);
+}
+#settings > .close > svg {
+    width: 100%;
+    padding: 10px;
+}
+
+#settings > .header {
+    font-weight: bold;
+    padding: 15px 15px 10px 15px;
+    display: inline-block;
+}
+#settings > .settings-item {
+    width: 100%;
+    height: auto;
+    background-color: var(--bg-light);
+    margin-bottom: 5px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+#settings > .settings-item > * {
+    align-self: center;
+}
+#settings > .settings-item > b {
+    display: inline-block;
+    padding: 15px;
+    vertical-align: middle;
+}
+#settings > .settings-item > a {
+    display: inline-block;
+    padding: 15px;
+    vertical-align: middle;
+    font-weight: bold;
+    cursor: pointer;
+}
+#settings > .settings-item > .dark {
+    display: inline-block;
+    padding: 15px;
+    vertical-align: middle;
+    background-color: var(--bg-dark);
+}
+#settings > .settings-item > input {
+    font-size: 14px;
+    padding: 7.5px 10px;
+    border: none;
+    outline: none;
+    color: var(--color-text);
+    background-color: var(--bg-lighter);
+    margin: 10px 0px 10px 10px;
+    border-radius: 10px;
+    vertical-align: middle;
+    user-select: initial;
+}
+
+#settings > .settings-item#sideload-type {
+    display: grid;
+    grid-template-columns: auto 1fr;
+}
+#settings > .settings-item#sideload-server {
+    display: grid;
+    grid-template-columns: 1fr auto;
+}
