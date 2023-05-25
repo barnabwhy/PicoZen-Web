@@ -99,11 +99,10 @@ a {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background-color: var(--bg-med);
     cursor: pointer;
 }
 #left > .settings:hover {
-    background-color: var(--bg-light);
+    background-color: var(--bg-med);
 }
 #left > .settings > svg {
     width: 100%;
