@@ -5,6 +5,7 @@ let itemList = [];
 getFileList();
 
 async function getFileList() {
+    itemList = [];
     if(host != "") {
         let url = new URL("https://files.picozen.app");
         url.pathname = currentPath;
@@ -12,7 +13,6 @@ async function getFileList() {
 
         let res = await fetch(url);
         let data = await res.json();
-        itemList = [];
 
         if(currentPath != "/" && currentPath != "") {
             let backPath = currentPath.split("/");
