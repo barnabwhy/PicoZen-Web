@@ -129,12 +129,12 @@ function downloadFile(url, fileName){
     aElement.setAttribute('download', fileName);
     aElement.href = url;
     aElement.setAttribute('download', true);
-    // aElement.setAttribute('target', '_blank');
     aElement.click();
     URL.revokeObjectURL(href);
 };
 
 document.querySelector("#settings-btn").addEventListener('click', () => {
+    document.querySelector("#sideload-server-input").value = host;
     document.querySelector("#settings-overlay").style.display = "grid";
 });
 document.querySelector("#settings-overlay-backdrop").addEventListener('click', () => {
@@ -143,9 +143,15 @@ document.querySelector("#settings-overlay-backdrop").addEventListener('click', (
 document.querySelector("#settings > .close").addEventListener('click', () => {
     document.querySelector("#settings-overlay").style.display = "none";
 });
-document.querySelector("#sideload-server-change").addEventListener('click', () => {
+
+document.querySelector("#sideload-server-input").addEventListener('keydown', ev => {
+    if(ev.key == "Enter")
+        changeServer();
+});
+document.querySelector("#sideload-server-change").addEventListener('click', changeServer);
+
+function changeServer() {
     host = document.querySelector("#sideload-server-input").value;
     localStorage.setItem("sideloadServer", host);
     getFileList();
-});
-
+}
