@@ -33,6 +33,7 @@ body {
 
 a {
     color: var(--color-link);
+    text-decoration: none;
 }
 
 #left {
@@ -70,7 +71,6 @@ a {
     border-radius: 10px;
     cursor: pointer;
     color: var(--color-text);
-    text-decoration: none;
 }
 .section-list > a:hover {
     background-color: var(--bg-med);
@@ -261,6 +261,7 @@ a {
     margin-bottom: 5px;
     border-radius: 10px;
     overflow: hidden;
+    display: block;
 }
 #settings > .settings-item > * {
     align-self: center;
