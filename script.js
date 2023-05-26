@@ -34,7 +34,6 @@ async function getFileList() {
                 name: dir.name,
                 path: dir.path,
                 size: dir.size,
-                lastUpdated: dir.lastUpdated,
             });
         }
         for(let file of data.files) {
@@ -43,7 +42,7 @@ async function getFileList() {
                 name: file.name,
                 path: file.path,
                 size: file.size,
-                lastUpdated: file.lastUpdated,
+                date: file.date,
             });
         }
     }
