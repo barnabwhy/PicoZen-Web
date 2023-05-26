@@ -8,7 +8,7 @@ getFileList();
 
 async function getFileList() {
     itemList = [];
-    if(host != "") {
+    if(host != "" && host != null) {
         let url = new URL(FILES_URL);
         url.pathname = currentPath;
         url.searchParams.set("host", host);
@@ -58,7 +58,7 @@ function renderFileList() {
     if(itemList.length == 0) {
         document.querySelector("#sideload-list").style.display = "none";
         document.querySelector("#sideload-error").style.display = "grid";
-        if(host == "") {
+        if(host == "" || host == null) {
             document.querySelector("#sideload-error > span").innerText = "A sideload server has not been set in settings";
         } else {
             document.querySelector("#sideload-error > span").innerText = "No files found";
