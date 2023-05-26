@@ -1,3 +1,5 @@
+const FILES_URL = "https://files.picozen.app";
+
 let host = localStorage.getItem("sideloadServer");
 let currentPath = "/";
 let itemList = [];
@@ -7,7 +9,7 @@ getFileList();
 async function getFileList() {
     itemList = [];
     if(host != "") {
-        let url = new URL("https://files.picozen.app");
+        let url = new URL(FILES_URL);
         url.pathname = currentPath;
         url.searchParams.set("host", host);
 
@@ -97,7 +99,7 @@ function renderFileList() {
             });
         } else {
             div.addEventListener('click', () => {
-                let url = new URL("https://files-pico.doesnt-like.me");
+                let url = new URL(FILES_URL);
                 url.pathname = item.path;
                 url.searchParams.set("host", host);
                 url.searchParams.set("download", 1)
