@@ -1,4 +1,4 @@
-# PicoZen_Web
+# PicoZen-Web
  
 A web interface for PicoZen's sideloading function 
 
