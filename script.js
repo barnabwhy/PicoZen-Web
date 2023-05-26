@@ -80,8 +80,8 @@ function renderFileList() {
         div.appendChild(name);
 
         let modified = document.createElement("span");
-        if(item.modifiedAt != undefined) {
-            modified.innerText = new Date(item.modified).toLocaleString();
+        if(item.date != undefined && item.date != null) {
+            modified.innerText = new Date(item.date).toLocaleString();
         }
         modified.classList.add("modified");
         div.appendChild(modified);
