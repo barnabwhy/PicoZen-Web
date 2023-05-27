@@ -114,6 +114,7 @@ a {
 #right {
     height: 100%;
     width: 100%;
+    overflow: hidden;
     padding: 0px 0px 0px 30px;
     display: grid;
     grid-template-rows: auto 1fr;
@@ -126,6 +127,14 @@ a {
 }
 
 
+@media screen and (max-width: 960px) {
+    #right .sideload-item {
+        grid-template-columns: auto 1fr auto;
+    }
+    #right .sideload-item > .modified {
+        display: none;
+    }
+}
 
 @media screen and (max-width: 720px) {
     :root {
@@ -141,6 +150,13 @@ a {
         width: 54px;
     }
     .section-list > a > span {
+        display: none;
+    }
+
+    #right .sideload-item {
+        grid-template-columns: auto 1fr;
+    }
+    #right .sideload-item > .modified, #right .sideload-item > .size {
         display: none;
     }
 }
@@ -167,7 +183,7 @@ a {
     margin-top: 5px;
     border-radius: 10px;
     display: grid;
-    grid-template-columns: auto 1fr auto auto;
+    grid-template-columns: auto 1fr minmax(min-content, auto) minmax(min-content, auto);
     line-height: 24px;
     cursor: pointer;
     align-items: center;
@@ -193,8 +209,11 @@ a {
     word-break: break-all;
 }
 
-#right .sideload-item.dir > .size {
+#right .sideload-item.dir {
     grid-template-columns: auto 1fr auto;
+}
+
+#right .sideload-item.dir > .size {
     display: none;
 }
 
