@@ -318,6 +318,7 @@ a {
     border-radius: 10px;
     vertical-align: middle;
     user-select: initial;
+    width: 100%;
 }
 
 #settings > .settings-item#sideload-type {
