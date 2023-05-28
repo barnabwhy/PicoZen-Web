@@ -60,8 +60,10 @@ function renderFileList() {
         document.querySelector("#sideload-error").style.display = "grid";
         if(host == "" || host == null) {
             document.querySelector("#sideload-error > span").innerText = "A sideload server has not been set in settings";
+            document.querySelector("#sideload-error > span").setAttribute("aria-label", "A sideload server has not been set in settings");
         } else {
             document.querySelector("#sideload-error > span").innerText = "No files found";
+            document.querySelector("#sideload-error > span").setAttribute("aria-label", "No files found");
         }
         return;
     }
@@ -74,6 +76,9 @@ function renderFileList() {
 
         div.classList.add("sideload-item");
         div.classList.add(item.type);
+        div.setAttribute("tabindex", "0");
+        div.setAttribute("aria-label", (item.type == "dir" ? `Folder, ${item.name == "../" ? "back" : item.name}` : `File, ${item.name}. ${bytesReadable(item.size)}`));
+        div.setAttribute("role", "button");
 
         let name = document.createElement("span");
         name.innerText = item.name;
@@ -93,9 +98,13 @@ function renderFileList() {
         div.appendChild(size);
 
         if(item.type == "dir") {
-            div.addEventListener('click', () => {
+            div.addEventListener('click', async () => {
                 currentPath = item.path;
-                getFileList();
+                let activeElement = document.activeElement;
+                await getFileList();
+                if(activeElement == div) {
+                    document.querySelector("#sideload-list > .sideload-item:first-child").focus();
+                }
             });
         } else {
             div.addEventListener('click', () => {
@@ -133,15 +142,25 @@ function downloadFile(url, fileName){
     aElement.click();
 };
 
-document.querySelector("#settings-btn").addEventListener('click', () => {
+function openSettings() {
     document.querySelector("#sideload-server-input").value = host;
     document.querySelector("#settings-overlay").style.display = "grid";
-});
-document.querySelector("#settings-overlay-backdrop").addEventListener('click', () => {
+    document.querySelector("#left").setAttribute("inert", "true");
+    document.querySelector("#right").setAttribute("inert", "true");
+    document.querySelector("#settings").focus();
+}
+function closeSettings() {
     document.querySelector("#settings-overlay").style.display = "none";
-});
-document.querySelector("#settings > .close").addEventListener('click', () => {
-    document.querySelector("#settings-overlay").style.display = "none";
+    document.querySelector("#left").removeAttribute("inert");
+    document.querySelector("#right").removeAttribute("inert");
+}
+
+document.querySelector("#settings-btn").addEventListener('click', openSettings);
+document.querySelector("#settings-overlay-backdrop").addEventListener('click', closeSettings);
+document.querySelector("#settings > .close").addEventListener('click', closeSettings);
+document.addEventListener('keydown', ev => {
+    if(ev.key == "Escape")
+        closeSettings();
 });
 
 document.querySelector("#sideload-server-input").addEventListener('keydown', ev => {
