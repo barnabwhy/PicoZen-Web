@@ -113,6 +113,14 @@ a {
     width: 100%;
 }
 
+.section-list > .spacer {
+    width: calc(100% - 20px);
+    height: 2.5px;
+    background-color: var(--bg-light);
+    margin: 10px;
+    border-radius: 10px;
+}
+
 #right {
     height: 100%;
     width: 100%;
