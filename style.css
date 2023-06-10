@@ -282,6 +282,7 @@ a {
     top: 35px;
     right: 35px;
     border: none;
+    padding: 0;
 }
 #settings > .close:hover {
     background-color: var(--bg-light);
